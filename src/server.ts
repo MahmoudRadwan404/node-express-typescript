@@ -13,7 +13,6 @@ app.use("/uploads", express.static(myPath));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.urlencoded());
 //app.use(upload.single('image'))
-app.use(upload.any());
 app.use(upload.array());
 app.listen(port, () => {
   console.log("listening");

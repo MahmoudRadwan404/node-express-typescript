@@ -20,13 +20,12 @@ export default async function verifyToken(req: any, res: Response) {
   try {
     await Jwt.verify(token, secretKey);
     const found = await accessToken.findOne({ token: token });
-
     if (!found) {
       return res.status(404).send({ error: "not found" });
     }
 
     const user = await users.findOne({ _id: found.id });
-    req["user"] = user;
+    req.user = user;
   } catch (err) {
     res.status(500).send({ error: "Error verifying token" });
   }

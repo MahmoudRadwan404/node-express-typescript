@@ -11,15 +11,16 @@ import verifyToken from "../../validation/users/compare-token";
 import create_post_validation from "../../validation/posts/create-post-validation";
 
 export default async function makePost(req: any, res: Response) {
-  await verifyToken;
-  await create_post_validation;
+  await verifyToken(req, res);
+  await create_post_validation(req, res);
   const posts = collection("posts");
   const requestHandler = handle(req);
   const title = requestHandler.input("title");
   const content = requestHandler.input("content");
   const published = requestHandler.input("published");
   const image = requestHandler.input("image");
-  const user = (req as any).user;
+  const user = req.user;
+  console.log(user)
   const imageName = Math.random().toString(36).substring(2, 7);
   let myPath: string | null = path.normalize(
     __dirname + `../../../../storage/uploads/${imageName}.png`
