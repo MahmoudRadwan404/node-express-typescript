@@ -18,9 +18,9 @@ export default async function makePost(req: any, res: Response) {
   const title = requestHandler.input("title");
   const content = requestHandler.input("content");
   const published = requestHandler.input("published");
-  const image :any= req.files.image.data
+  const image: any = req.files.image.data;
   const user = req.user;
-  console.log(image)
+  console.log(image);
   const imageName = Math.random().toString(36).substring(2, 7);
   let myPath: string | null = path.normalize(
     __dirname + `../../../../storage/uploads/${imageName}.png`
