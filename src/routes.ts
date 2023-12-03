@@ -19,7 +19,7 @@ import multer from "multer";
 import addUserValidation from "./validation/users/addUserVal";
 
 //-------------------login------------------------------------
-app.get("/users", getAllUsers); //has preHandler inside the handler and the preHandler is "verifyToken"
+app.get("/users", verifyToken,getAllUsers); //has preHandler inside the handler and the preHandler is "verifyToken"
 app.get("/users/:id", getSingleUser);
 app.post("/users", addUser);
 app.patch("/users/:id", updateUser);
@@ -30,8 +30,8 @@ app.post("/users/reset", reset);
 //------------------------posts------------------------
 app.get("/posts", listPosts);
 app.get("/posts/:id", getSinglePost);
-app.post("/posts",makePost); //two preHandlers "verifyToken","create_post_validation"
-app.delete("/posts/:id", deletePost);
+app.post("/posts",[verifyToken,create_post_validation],makePost); //two preHandlers "verifyToken","create_post_validation"
+app.delete("/posts/:id", verifyToken,deletePost);
 app.put("/posts/:id", updatePost);
 //-------------------------------------------------------------
 //app.post('/',addUserValidation)

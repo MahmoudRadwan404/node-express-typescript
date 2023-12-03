@@ -6,13 +6,11 @@ import { mkdir } from "fs";
 import path = require("path");
 import urlImage from "./image-url";
 import wrong from "./error";
-import Obj from "./types";
+import {Obj} from "./types";
 import verifyToken from "../../validation/users/compare-token";
 import create_post_validation from "../../validation/posts/create-post-validation";
 
 export default async function makePost(req: any, res: Response) {
-  await verifyToken(req, res);
-  await create_post_validation(req, res);
   const posts = collection("posts");
   const requestHandler = handle(req);
   const title = requestHandler.input("title");

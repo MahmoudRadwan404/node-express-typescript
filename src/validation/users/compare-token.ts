@@ -4,7 +4,7 @@ import crypto from "crypto";
 import { secretKey } from "../../config";
 import { collection } from "../../database/connection";
 
-export default async function verifyToken(req: any, res: Response) {
+export default async function verifyToken(req: any, res: Response,next:any) {
   const authHeader =
     req.headers["Authorization"] || req.headers["authorization"];
   if (!authHeader) {
@@ -29,4 +29,5 @@ export default async function verifyToken(req: any, res: Response) {
   } catch (err) {
     res.status(500).send({ error: "Error verifying token" });
   }
+  next()
 }

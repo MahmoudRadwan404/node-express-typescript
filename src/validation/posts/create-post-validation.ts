@@ -3,7 +3,8 @@ import handle from "../../core/request-class";
 
 export default async function create_post_validation(
   req: Request,
-  res: Response
+  res: Response,
+  next: any
 ) {
   const requestHandler = handle(req);
   const title = requestHandler.input("title");
@@ -14,4 +15,5 @@ export default async function create_post_validation(
       .status(400)
       .send({ error: "header and content are both required" });
   }
+  next()
 }

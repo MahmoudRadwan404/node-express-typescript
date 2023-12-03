@@ -1,3 +1,4 @@
+import {obj} from '../controllers/posts/types'
 export default function handle(request: any) {
   return {
     input: function (requestKey: string) {

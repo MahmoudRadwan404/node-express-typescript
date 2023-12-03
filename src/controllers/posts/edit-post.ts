@@ -5,7 +5,7 @@ import handle from "../../core/request-class";
 import verifyToken from "../../validation/users/compare-token";
 
 const updatePost = async (req: Request, res: Response) => {
-  await verifyToken(req, res);
+
   const requestHandler = handle(req);
   const postId = requestHandler.input("id");
   const post = requestHandler.input("post");

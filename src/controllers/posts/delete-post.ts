@@ -4,8 +4,8 @@ import { ObjectId } from "mongodb";
 import handle from "../../core/request-class";
 import verifyToken from "../../validation/users/compare-token";
 
-export default async function deletePost(req: Request, res: Response) {
-  await verifyToken(req, res);
+export default async function deletePost(req: Request, res: Response,next:any) {
+ 
   const posts = collection("posts");
   const requestHandler = handle(req);
   const postId = requestHandler.input("id");
