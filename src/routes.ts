@@ -18,9 +18,6 @@ import imageShow from "./controllers/posts/image-show";
 import multer from "multer";
 import addUserValidation from "./validation/users/addUserVal";
 
-
-
-
 //-------------------login------------------------------------
 app.get("/users", getAllUsers); //has preHandler inside the handler and the preHandler is "verifyToken"
 app.get("/users/:id", getSingleUser);
