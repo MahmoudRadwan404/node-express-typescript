@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import handle from "../../core/request-class";
 
-export default async function create_post_validation(
+export default async function createPostValidation(
   req: Request,
   res: Response,
   next: any

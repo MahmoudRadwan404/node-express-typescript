@@ -10,7 +10,7 @@ import newAccessToken from "../../utils/generate-access-token";
 import verifyPassword from "../../validation/users/verify-password";
 import { loginValidation } from "../../validation/users/logIn-validation";
 
-export default async function logIn(request: any, reply: Response) {
+export default async function login(request: any, reply: Response) {
   const requestHandler = handle(request);
   const usersCollection = collection("users");
   const { email, password } = requestHandler.only(["email", "password"]);

@@ -4,10 +4,16 @@ import crypto from "crypto";
 import { secretKey } from "../../config";
 import { collection } from "../../database/connection";
 
-export default async function verifyToken(req: any, res: Response,next:any) {
-  const authHeader =
+export default async function verifyToken(req: any, res: Response, next: any) {
+  const authHeader: string =
     req.headers["Authorization"] || req.headers["authorization"];
   if (!authHeader) {
+    return res
+      .status(403)
+      .send({ error: "Invalid authorization, token is required" });
+  }
+
+  if (!authHeader.startsWith("Bearer ")) {
     return res
       .status(403)
       .send({ error: "Invalid authorization, token is required" });
@@ -29,5 +35,5 @@ export default async function verifyToken(req: any, res: Response,next:any) {
   } catch (err) {
     res.status(500).send({ error: "Error verifying token" });
   }
-  next()
+  next();
 }
