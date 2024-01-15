@@ -12,7 +12,7 @@ app.use(
   cors({
     origin: "*",
     credentials: true,
-    methods: "*",
+    methods: ["GET", "POST", "DELETE", "PATCH", "PUT"],
   })
 );
 app.use(fileUpload());
