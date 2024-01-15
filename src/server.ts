@@ -8,7 +8,9 @@ import fileUpload from "express-fileupload";
 //const fileUpload = require("express-fileupload");
 import { options } from "./core/options-cors";
 const app = express();
-app.use(cors(options));
+app.use(cors({
+  origin:'*'
+}));
 app.use(fileUpload());
 const myPath = path.join(process.cwd() + "/storage/uploads");
 
