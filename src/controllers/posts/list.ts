@@ -9,16 +9,31 @@ export default async function listPosts(request: Request, reply: Response) {
   const skip = (page - 1) * limit;
   const postsCollection = collection("posts");
   const title = requestHandler.input("title");
+
   if (title) {
     const postsFilterResult = await postsCollection
       .find({ title: title })
       .toArray();
-    return reply.status(200).send({afterFilter:postsFilterResult});
+    const numberOfPages: number = Math.ceil(postsFilterResult.length / limit);
+    console.log(numberOfPages);
+    return reply.status(200).send({
+      afterFilter: postsFilterResult,
+      numOfPages: numberOfPages,
+      limit, page,
+      total: postsFilterResult.length
+    });
   }
+
   const allPosts = await postsCollection
     .find({})
     .limit(limit)
     .skip(skip)
     .toArray();
-  reply.status(200).send({ posts: allPosts });
+  const numberOfPages: number = Math.ceil(allPosts.length / limit);
+  reply.status(200).send({
+    posts: allPosts,
+    Pages: numberOfPages,
+    limit, page,
+    total: allPosts.length
+  });
 }
